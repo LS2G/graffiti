@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Graffiti</title>
+</head>
+<body>
+<h2> Réglage des Variables CSS en <span class="h1">Javascript</span></h2>
+
+<div class="controls">
+	<label for ="marge">Marge:</label>
+	<input type="range" name="marge" min="10" max="200" value="10" data-sizing="px">
+
+
+	<label for="flou">Flou</label>
+	<input type="range" name="flou" min="0" max="25" value="10" data-sizing="px">
+
+
+	<label for ="couleur">Couleur</label>
+	<input type="color UsersDocuments\" name="couleur" value="#ffc600">
+	
+</div>
+
+<img src="graffiti.jpeg">
+
+
+<style type="text/css">
+
+
+:root{
+
+	--couleur: #ffc600;
+	--marge: 10px;
+	--flou: 10px;
+}
+	
+img {
+
+padding: var(--marge);
+background: var(--couleur);
+filter: blur(var(--flou));
+
+}
+
+.h1 {
+
+	color: var(--couleur);
+}
+
+body{
+	text-align: center;
+	background: #193550;
+	color: white;
+	font-family: 'Roboto';
+	font-weight: 100;
+	font-size: 50px;
+}
+
+.controls{
+
+margin-bottom: 50px;
+
+
+}
+
+</style>
+
+<script >
+	
+const inputs = document.querySelectorAll('.controls input');
+
+function handleUpdate() {
+
+	const suffix = this.dataset.sizing || '';
+     document.documentElement.style.setProperty( `--${this.name}`,this.value + suffix);
+
+}
+inputs.forEach( input => input.addEventListener('change', handleUpdate));
+inputs.forEach( input => input.addEventListener('mousemove', handleUpdate));
+</script>
+
+</body>
